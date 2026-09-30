@@ -3,12 +3,15 @@
 ETL: SkillsFuture Skills Framework dataset -> lightweight JSON for
 SkillsMap.sg (a static, client-side, no-backend web portal).
 
-Sources (as uploaded):
+Sources (as uploaded, v2 — Sep 2026 refresh):
   - jobsandskills-skillsfuture-skills-framework-dataset.xlsx
-      Job Role_Description, Job Role_CWF_KT, Job Role_TCS_CCS,
+      Job Role_Description, Job Role_CWF_KT, Job Role_TSC_CCS,
       TSC_CCS_Key
   - jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx
-      TSC to Unique Skill Mapping
+      sheet "data" — uses the "_updated" columns (updated skill title/
+      type/SFS(emerging)/CASL status), not the "_previous" ones, since
+      those reflect the current, current taxonomy after SSG's skills
+      revision.
   - jobsandskills-skillsfuture-unique-skills-list.xlsx
       Unique Skills List
 
@@ -26,9 +29,9 @@ from pathlib import Path
 from collections import defaultdict
 
 SRC = "/root/.claude/uploads/9317e3ec-a89d-538f-9a7b-1f92ff21c6c7"
-FRAMEWORK = f"{SRC}/a5eaa9ab-jobsandskills-skillsfuture-skills-framework-dataset.xlsx"
-TSC_MAP = f"{SRC}/eaf9a114-jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
-UNIQUE_SKILLS = f"{SRC}/84ec7485-jobsandskills-skillsfuture-unique-skills-list.xlsx"
+FRAMEWORK = f"{SRC}/c7973b80-jobsandskills-skillsfuture-skills-framework-dataset.xlsx"
+TSC_MAP = f"{SRC}/682a7a26-jobsandskills-skillsfuture-tsc-to-unique-skills-mapping.xlsx"
+UNIQUE_SKILLS = f"{SRC}/c3e1a824-jobsandskills-skillsfuture-unique-skills-list.xlsx"
 
 OUT = Path("/home/claude/outputs/skillsmap-sg/data")
 OUT_ROLES = OUT / "roles"
@@ -71,24 +74,32 @@ for code, sector, category, title, desc, typ, _updated in key_rows:
 print(f"  {len(tsc_key):,} TSC/CCS codes")
 
 print("Loading TSC to Unique Skill Mapping...")
-_, tsc_map_rows = rows_of(TSC_MAP, "TSC to Unique Skill Mapping")
+# Columns: skills_framework_skill_code, ...skill_title/desc/pl/pl_desc,
+# Unique skill_previous_* (x5), Unique skill_updated_* (x6). We use the
+# "_updated" fields throughout -- they reflect SSG's current taxonomy
+# after their skills revision, not the superseded "_previous" ones.
+_, tsc_map_rows = rows_of(TSC_MAP, "data")
 tsc_to_skill = {}
-for sector_title, skill_11k, prof, code, skill_type, emerging, casl, parent in tsc_map_rows:
+for (code, _sf_title, _sf_desc, _sf_pl, _sf_pl_desc,
+     _prev_title, _prev_desc, _prev_sfs, _prev_casl, _prev_type,
+     updated_title, _updated_desc, updated_sfs, updated_casl, updated_type,
+     _updated_sector) in tsc_map_rows:
     if not code:
         continue
     tsc_to_skill[code] = {
-        "skill_11k_title": skill_11k,
-        "parent_skill_title": parent,
-        "skill_type": skill_type,
-        "emerging": to_bool(emerging),
-        "casl": to_bool(casl),
+        "parent_skill_title": updated_title,
+        "skill_type": updated_type,
+        "emerging": to_bool(updated_sfs),
+        "casl": to_bool(updated_casl),
     }
 print(f"  {len(tsc_to_skill):,} code -> unique-skill rows")
 
 print("Loading Unique Skills List...")
+# Columns: skill_transaction_id, skill_id, skill_title, skill_description,
+# skill_type, Emerging Skills, CASL Skills.
 _, unique_rows = rows_of(UNIQUE_SKILLS, "Unique Skills List")
 unique_skills = []
-for title, desc, skill_type, emerging, casl in unique_rows:
+for _txn_id, _skill_id, title, desc, skill_type, emerging, casl in unique_rows:
     if not title:
         continue
     unique_skills.append({
@@ -132,8 +143,8 @@ for key, cwf_map in cwf_by_role.items():
     ]
 print(f"  attached CWF/KT to {len(cwf_by_role):,} roles")
 
-print("Loading Job Role_TCS_CCS (required TSC/CCS per role)...")
-_, tcs_rows = rows_of(FRAMEWORK, "Job Role_TCS_CCS")
+print("Loading Job Role_TSC_CCS (required TSC/CCS per role)...")
+_, tcs_rows = rows_of(FRAMEWORK, "Job Role_TSC_CCS")
 skipped_no_key = 0
 for sector, track, job_role, skill_sector_title, typ, prof, code in tcs_rows:
     key = (sector, track, job_role)

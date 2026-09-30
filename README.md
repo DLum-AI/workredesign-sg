@@ -4,7 +4,7 @@ A free, static, self-service tool for Singapore businesses to redesign a
 job role and validate the skills it needs, built directly on the national
 **Skills Framework** dataset (SkillsFuture Singapore / Workforce Singapore):
 39 sectors, ~2,000 job roles, 12,000+ Technical Skills & Competencies (TSC)
-and Critical Core Skills (CCS), mapped to a 2,182-skill taxonomy.
+and Critical Core Skills (CCS), mapped to a 2,388-skill taxonomy.
 
 No backend, no accounts, no database. Pure HTML/CSS/vanilla JS, reading
 static JSON data files and keeping everything you enter in the browser's
@@ -25,7 +25,7 @@ static JSON data files and keeping everything you enter in the browser's
 5. **Get a report** &mdash; a readiness score, a prioritised skills-gap list,
    and a printable/CSV-exportable summary.
 
-A separate **Skills Library** page lets you search any of the 2,182 unique
+A separate **Skills Library** page lets you search any of the 2,388 unique
 skills and see every role/sector that needs it &mdash; useful for spotting
 internal redeployment options.
 
@@ -46,7 +46,7 @@ skillsmap-sg/
 └── data/
     ├── sectors.json          39 sectors, role counts, tracks
     ├── roles/<sector>.json    Full role detail per sector (loaded on demand)
-    ├── unique_skills.json     The 2,182-entry skills taxonomy
+    ├── unique_skills.json     The 2,388-entry skills taxonomy
     └── skill_index.json       Reverse index: skill -> roles that need it
 ```
 
