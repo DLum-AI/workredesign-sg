@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About the data | SkillsMap.sg</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <span class="pill-badge">About</span>
+    <h1>Where this data comes from, and its limits</h1>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="card">
+      <h2>Source data</h2>
+      <p>SkillsMap.sg is built entirely on three public datasets published by SkillsFuture Singapore (SSG) and Workforce Singapore (WSG) as part of the national <a href="https://www.myskillsfuture.gov.sg/content/portal/en/career-resources/career-resources/browse-industry-sector.html" target="_blank" rel="noopener">Skills Framework</a>:</p>
+      <ul>
+        <li><strong>Skills Framework dataset</strong> &mdash; job role descriptions, critical work functions, key tasks, and the Technical Skills &amp; Competencies (TSC) / Critical Core Skills (CCS) each role requires, with proficiency levels, across 39 sectors and roughly 2,000 job roles.</li>
+        <li><strong>TSC-to-unique-skills mapping</strong> &mdash; how each of the 12,000+ sector-specific TSC/CCS codes maps onto a smaller, de-duplicated taxonomy of skills.</li>
+        <li><strong>Unique Skills List</strong> &mdash; the 2,182-entry taxonomy itself, including which skills are flagged as "emerging" or "CASL" (critical or advanced skills for the future economy).</li>
+      </ul>
+      <p class="mb-0">All three were joined by their shared TSC/CCS codes to build this site's data files. Nothing here is modified from the source content &mdash; job role descriptions, task lists, and skill titles/descriptions are quoted as published.</p>
+    </div>
+
+    <div class="card">
+      <h2>Why a skills-based approach</h2>
+      <p>McKinsey's research with the Rework America Alliance found that employers rank <strong>validating skills and competencies</strong> as their top hiring and talent challenge (48% of respondents), just ahead of sourcing candidates with the right skills (46%) &mdash; and that skills-based hiring is roughly five times more predictive of job performance than hiring on education alone. Their guidance on rolling out a skills-based approach (sourcing &rarr; hiring &rarr; career development) shaped how this tool sequences a redesign: define what the role actually needs before deciding who can do it.</p>
+      <p class="mb-0">Source: <em>"Taking a skills-based approach to building the future workforce,"</em> McKinsey &amp; Company, November 2022.</p>
+    </div>
+
+    <div class="card">
+      <h2>What this tool does <em>not</em> do</h2>
+      <ul class="mb-0">
+        <li>It doesn't automatically decide which skills a task removal affects &mdash; the source data links skills to job roles, not to individual tasks, so step 2's task checklist is a planning record for your report, not an automated skill-remover.</li>
+        <li>It doesn't verify anyone's actual proficiency &mdash; the validation step captures your own self-assessment of your team, which is a starting point for a conversation or a formal skills audit, not a substitute for one.</li>
+        <li>It isn't an official SkillsFuture or Workforce Singapore product, and isn't affiliated with either agency. Always check the <a href="https://www.myskillsfuture.gov.sg/content/portal/en/career-resources/career-resources/browse-industry-sector.html" target="_blank" rel="noopener">official Skills Framework portal</a> for the current, authoritative version of any role's skills before using it for compliance, grant applications, or formal HR decisions.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Privacy</h2>
+      <p class="mb-0">This is a static site with no backend and no accounts. Everything you enter &mdash; the role you picked, tasks you flagged, and your team's self-assessed proficiency &mdash; stays in your browser's local storage on your own device. Nothing is sent to a server, logged, or shared. Clearing your browser data or using a different device starts fresh.</p>
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/layout.js"></script>
+<script>
+  renderHeader("about");
+  renderFooter();
+</script>
+</body>
+</html>
