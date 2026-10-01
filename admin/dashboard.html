@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard | WorkRedesign.sg Admin</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="admin-bar"></div>
+
+<main class="admin-main">
+  <h1>Dashboard</h1>
+  <p class="muted">A quick read on what needs attention right now.</p>
+
+  <div class="stat-row" id="statRow">
+    <div class="stat-tile"><div class="num">&hellip;</div><div class="label">Pending PMET profiles</div></div>
+    <div class="stat-tile"><div class="num">&hellip;</div><div class="label">Pending hirer accounts</div></div>
+    <div class="stat-tile"><div class="num">&hellip;</div><div class="label">Open intro requests</div></div>
+    <div class="stat-tile"><div class="num">&hellip;</div><div class="label">Published talent profiles</div></div>
+  </div>
+
+  <div class="grid cols-2">
+    <div class="card">
+      <h2>Needs your review</h2>
+      <div id="reviewQueue"><p class="muted">Loading&hellip;</p></div>
+    </div>
+    <div class="card">
+      <h2>Quick links</h2>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <a href="talent.html" class="btn btn-outline btn-block">Review talent profiles &rarr;</a>
+        <a href="accounts.html" class="btn btn-outline btn-block">Approve hirer accounts &rarr;</a>
+        <a href="content.html" class="btn btn-outline btn-block">Edit site content &amp; menu &rarr;</a>
+        <a href="grants.html" class="btn btn-outline btn-block">Manage grants &amp; checklists &rarr;</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="../js/supabaseClient.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

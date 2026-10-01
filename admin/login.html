@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Login | WorkRedesign.sg</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<main class="admin-main" style="max-width:420px; padding-top:80px;">
+  <div class="text-center mb-0" style="margin-bottom:24px;">
+    <h1 style="color:var(--navy);">WorkRedesign<span style="color:var(--orange);">.sg</span></h1>
+    <p class="muted">Admin / staff sign in</p>
+  </div>
+
+  <div class="card">
+    <div id="errorBox" class="note-box hidden" style="margin-bottom:16px;"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" style="padding:12px;">Sign in</button>
+    </form>
+    <p class="muted mt-24 mb-0" style="font-size:0.85rem;">
+      Staff accounts are provisioned directly by a super admin — there's no
+      self-service signup here. Hirers and PMETs sign up at
+      <a href="../account.html">account.html</a> instead.
+    </p>
+  </div>
+</main>
+
+<script src="../js/supabaseClient.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  if (params.get("error") === "not_staff") {
+    const box = document.getElementById("errorBox");
+    box.textContent = "That account isn't a staff account, so it can't access the admin portal.";
+    box.classList.remove("hidden");
+  }
+
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const box = document.getElementById("errorBox");
+    box.classList.add("hidden");
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      box.textContent = error.message;
+      box.classList.remove("hidden");
+      return;
+    }
+    window.location.href = "dashboard.html";
+  });
+
+  // If already logged in, skip straight to the dashboard.
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = "dashboard.html";
+  });
+</script>
+</body>
+</html>

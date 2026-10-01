@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Talent Directory | WorkRedesign.sg</title>
+<meta name="description" content="Browse anonymised mid-career PMET profiles available for fractional, job-share, and project-based work." />
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <span class="step-pill">Talent Directory</span>
+    <h1>Browse the pool</h1>
+    <p class="lead">Every card here is anonymised — no names, no contact details — until you request an
+    introduction and our team approves it. <span id="accessNote"></span></p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="filter-bar">
+      <input type="text" id="searchInput" placeholder="Search headline or skills&hellip;" />
+      <select id="functionFilter"><option value="">All functions</option></select>
+      <select id="arrangementFilter">
+        <option value="">Any arrangement</option>
+        <option value="fractional">Fractional</option>
+        <option value="job-share">Job-share</option>
+        <option value="project-based">Project-based</option>
+      </select>
+    </div>
+
+    <div class="field" style="margin-top:14px;">
+      <label>Filter by skills <span class="muted" style="font-weight:400;">(official Skills Framework — shows profiles with any selected skill)</span></label>
+      <div id="skillFilterMount"></div>
+    </div>
+
+    <div id="resultsCount" class="muted mb-0" style="margin-bottom:14px;"></div>
+    <div id="cardsGrid" class="grid cols-3"></div>
+
+  </div>
+</main>
+
+<div id="modalRoot"></div>
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/skillsmap-data.js"></script>
+<script src="js/skill-picker-widget.js"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/directory.js"></script>
+</body>
+</html>

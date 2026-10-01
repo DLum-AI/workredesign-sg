@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Talent Library | WorkRedesign.sg Admin</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="admin-bar"></div>
+
+<main class="admin-main">
+  <h1>Talent Library</h1>
+  <p class="muted">Review PMET self-submissions, manage published profiles, and decide introduction requests.</p>
+
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="pending">Pending review</button>
+    <button class="tab-btn" data-tab="published">Published profiles</button>
+    <button class="tab-btn" data-tab="intros">Introduction requests</button>
+  </div>
+
+  <div id="tab-pending"><div id="pendingList"></div></div>
+  <div id="tab-published" class="hidden"><div id="publishedList"></div></div>
+  <div id="tab-intros" class="hidden"><div id="introsList"></div></div>
+</main>
+
+<div id="modalRoot"></div>
+
+<script src="../js/supabaseClient.js"></script>
+<script src="../js/skillsmap-data.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/talent.js"></script>
+</body>
+</html>

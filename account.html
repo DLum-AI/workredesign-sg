@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign In / Sign Up | WorkRedesign.sg</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <h1>Sign in or create an account</h1>
+    <p class="lead">Hirers get a free account to browse the talent library and request introductions.
+    Mid-career PMETs get an account to submit and manage their own profile.</p>
+  </div>
+</section>
+
+<main>
+  <div class="container" style="max-width:480px;">
+
+    <div class="tab-row" style="margin-bottom:20px;">
+      <button class="tab-btn" data-tab="login" style="flex:1;">Sign in</button>
+      <button class="tab-btn active" data-tab="signup" style="flex:1;">Create account</button>
+    </div>
+
+    <div id="tab-login" class="card hidden">
+      <div id="loginError" class="note-box hidden" style="margin-bottom:16px;"></div>
+      <form id="loginForm">
+        <div class="field"><label>Email</label><input type="email" id="li_email" required /></div>
+        <div class="field"><label>Password</label><input type="password" id="li_password" required /></div>
+        <button type="submit" class="btn btn-primary btn-block" style="padding:12px;">Sign in</button>
+      </form>
+    </div>
+
+    <div id="tab-signup" class="card">
+      <div id="signupError" class="note-box hidden" style="margin-bottom:16px;"></div>
+      <div id="signupSuccess" class="verdict high hidden"></div>
+
+      <form id="signupForm">
+        <div class="field">
+          <label>I am a&hellip;</label>
+          <select id="su_type">
+            <option value="hirer">Hirer looking for talent</option>
+            <option value="pmet">Mid-career PMET looking for work</option>
+          </select>
+        </div>
+        <div class="field"><label>Your name</label><input type="text" id="su_name" required /></div>
+        <div class="field hidden" id="companyField"><label>Company name</label><input type="text" id="su_company" /></div>
+        <div class="field"><label>Email</label><input type="email" id="su_email" required /></div>
+        <div class="field"><label>Password</label><input type="password" id="su_password" required minlength="8" /></div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="su_consent" required />
+          <label for="su_consent">I agree to WorkRedesign.sg using my details to create and manage my account, in line with the Personal Data Protection Act.</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-24" style="padding:12px;">Create account</button>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/supabaseClient.js"></script>
+<script>
+  renderHeader("");
+  renderFooter();
+
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-login").classList.toggle("hidden", btn.dataset.tab !== "login");
+      document.getElementById("tab-signup").classList.toggle("hidden", btn.dataset.tab !== "signup");
+    });
+  });
+
+  document.getElementById("su_type").addEventListener("change", (e) => {
+    document.getElementById("companyField").classList.toggle("hidden", e.target.value !== "hirer");
+  });
+
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const box = document.getElementById("loginError");
+    box.classList.add("hidden");
+    const { error } = await supabase.auth.signInWithPassword({
+      email: document.getElementById("li_email").value,
+      password: document.getElementById("li_password").value,
+    });
+    if (error) { box.textContent = error.message; box.classList.remove("hidden"); return; }
+    window.location.href = "directory.html";
+  });
+
+  document.getElementById("signupForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const errBox = document.getElementById("signupError");
+    const okBox = document.getElementById("signupSuccess");
+    errBox.classList.add("hidden");
+    okBox.classList.add("hidden");
+
+    const accountType = document.getElementById("su_type").value; // 'hirer' | 'pmet'
+    const { data, error } = await supabase.auth.signUp({
+      email: document.getElementById("su_email").value,
+      password: document.getElementById("su_password").value,
+      options: {
+        data: {
+          account_type: accountType,
+          display_name: document.getElementById("su_name").value,
+          company_name: accountType === "hirer" ? document.getElementById("su_company").value : null,
+        },
+      },
+    });
+
+    if (error) { errBox.textContent = error.message; errBox.classList.remove("hidden"); return; }
+
+    okBox.innerHTML = accountType === "hirer"
+      ? `<h2>Account created</h2><p class="mb-0">Check your email to confirm your account. Once confirmed, you can browse public profiles right away — full detail access needs a quick approval from our team.</p>`
+      : `<h2>Account created</h2><p class="mb-0">Check your email to confirm your account, then head to <a href="talent-submit.html">talent-submit.html</a> to build your profile.</p>`;
+    okBox.classList.remove("hidden");
+    document.getElementById("signupForm").reset();
+  });
+
+  // If already logged in, skip straight to the directory.
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session) window.location.href = "directory.html";
+  });
+</script>
+</body>
+</html>

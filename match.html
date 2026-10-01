@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Find Fractional Talent | WorkRedesign.sg</title>
+<meta name="description" content="Request a match with a vetted mid-career PMET for your fractional, job-share, or project-based role." />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <span class="step-pill">Stage 5 · Match</span>
+    <h1>See who's actually available.</h1>
+    <p class="lead">We hand-match every request against our pool of vetted mid-career PMETs — no cold
+    directory browsing. Tell us what the role needs and we'll come back with real options.</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="section hidden" id="taskMapSummary">
+      <div class="note-box" id="taskMapSummaryText"></div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h2>Request a match</h2>
+        <p class="muted">Profiles in our pool are shown to hirers as anonymised skill/experience cards.
+        Full contact details are only shared once both sides agree to an introduction — this protects
+        PMETs who may still be employed elsewhere.</p>
+
+        <form id="matchForm">
+          <div class="grid cols-2">
+            <div class="field">
+              <label for="companyName">Company name</label>
+              <input type="text" id="companyName" required />
+            </div>
+            <div class="field">
+              <label for="contactEmail">Your email</label>
+              <input type="email" id="contactEmail" required />
+            </div>
+          </div>
+
+          <div class="grid cols-2">
+            <div class="field">
+              <label for="functionArea">Function / role area</label>
+              <select id="functionArea">
+                <option>Finance / Accounting</option>
+                <option>Operations</option>
+                <option>HR / People</option>
+                <option>Marketing</option>
+                <option>Digitalisation / IT</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="arrangementType">Arrangement type</label>
+              <select id="arrangementType">
+                <option>Fractional</option>
+                <option>Job-share</option>
+                <option>Project-based</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="hoursWeek">Estimated hours / week needed</label>
+            <input type="number" id="hoursWeek" min="1" placeholder="e.g. 15" />
+          </div>
+
+          <div class="field">
+            <label>Skills needed</label>
+            <div id="skillsNeededMount"></div>
+          </div>
+
+          <div class="field">
+            <label for="message">Tell us about the role</label>
+            <textarea id="message" rows="5" placeholder="What does this person need to do, and what would success look like in the first 3 months?"></textarea>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="consentCheck" required />
+            <label for="consentCheck">I understand my details will be used to find a talent match and
+            may be shared with a matched candidate once I confirm interest in an introduction.</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block mt-24" style="padding:14px;">
+            Send match request
+          </button>
+        </form>
+
+        <div id="formSuccess" class="hidden verdict high mt-24">
+          <h2>Request received</h2>
+          <p class="mb-0">Your email client should have opened with a pre-filled message — send it to
+          reach our team directly. We typically respond within 2 business days with a shortlist.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/skillsmap-data.js"></script>
+<script src="js/role-search-widget.js"></script>
+<script src="js/skill-picker-widget.js"></script>
+<script src="js/match.js"></script>
+<script>
+  renderHeader("match");
+  renderFooter();
+  initMatchForm();
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Submit Your Profile | WorkRedesign.sg</title>
+<link rel="stylesheet" href="css/styles.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <h1>Add yourself to the talent library</h1>
+    <p class="lead">Nothing goes live until our team reviews it. Your name and contact details are only
+    ever shared with a hirer after you or our team approves a specific introduction.</p>
+  </div>
+</section>
+
+<main>
+  <div class="container" style="max-width:720px;">
+
+    <div id="notLoggedIn" class="card hidden">
+      <h2>Sign in first</h2>
+      <p>You'll need a free account to submit and manage your profile.</p>
+      <a href="account.html" class="btn btn-primary">Sign in / create account &rarr;</a>
+    </div>
+
+    <div id="formWrap" class="hidden">
+      <div id="statusBanner" class="hidden"></div>
+
+      <div class="card">
+        <h2>Public card <span class="pill">Anyone can see this</span></h2>
+        <div class="field"><label>Headline</label><input type="text" id="headline" placeholder="e.g. Fractional Finance Lead" required /></div>
+        <div class="grid cols-2">
+          <div class="field"><label>Function area</label>
+            <select id="function_area">
+              <option>Finance / Accounting</option><option>Operations</option><option>HR / People</option>
+              <option>Marketing</option><option>Digitalisation / IT</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label>Years of experience band</label>
+            <select id="years_band"><option>3-5 years</option><option>5-10 years</option><option>10-15 years</option><option>15+ years</option></select>
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div class="field"><label>Availability (hours/week)</label><input type="number" id="availability" min="1" max="60" /></div>
+          <div class="field"><label>Arrangement types</label>
+            <select id="arrangement_types" multiple size="3">
+              <option value="fractional">Fractional</option>
+              <option value="job-share">Job-share</option>
+              <option value="project-based">Project-based</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Skills / tools</label>
+          <div id="skillsPickerMount"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Private detail <span class="pill">Approved hirers only</span></h2>
+        <div class="field"><label>Bio</label><textarea id="bio_private" rows="4"></textarea></div>
+        <div class="field"><label>Tools / software (comma-separated)</label><input type="text" id="tools_software" /></div>
+        <div class="grid cols-2">
+          <div class="field"><label>Indicative rate band</label><input type="text" id="rate_band" placeholder="$80-100/hr" /></div>
+        </div>
+        <div class="field"><label>Case study summary</label><textarea id="case_study" rows="3"></textarea></div>
+      </div>
+
+      <div class="card">
+        <h2>Contact <span class="pill">Only shared after an approved introduction</span></h2>
+        <div class="grid cols-2">
+          <div class="field"><label>Full name</label><input type="text" id="full_name" required /></div>
+          <div class="field"><label>Contact email</label><input type="email" id="contact_email" required /></div>
+        </div>
+        <div class="field"><label>Contact phone</label><input type="text" id="contact_phone" /></div>
+      </div>
+
+      <div class="card">
+        <div class="checkbox-row">
+          <input type="checkbox" id="consent_public" />
+          <label for="consent_public">I consent to my anonymised card (headline, function, skills, availability — no name) being shown publicly.</label>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="consent_private" />
+          <label for="consent_private">I consent to my fuller bio and rate band being shown to hirers our team has approved for full library access.</label>
+        </div>
+        <button id="submitBtn" class="btn btn-primary btn-block mt-24" style="padding:14px;">Submit for review</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/skillsmap-data.js"></script>
+<script src="js/skill-picker-widget.js"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/talent-submit.js"></script>
+</body>
+</html>

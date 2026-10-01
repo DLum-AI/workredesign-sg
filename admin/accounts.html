@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Accounts &amp; Approvals | WorkRedesign.sg Admin</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="admin-bar"></div>
+
+<main class="admin-main">
+  <h1>Accounts &amp; Approvals</h1>
+  <p class="muted">Approve hirer accounts for full library access, and manage staff accounts and roles.</p>
+
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="hirers">Hirer accounts</button>
+    <button class="tab-btn" data-tab="staff">Staff accounts</button>
+  </div>
+
+  <div id="tab-hirers"><div id="hirersList"></div></div>
+  <div id="tab-staff" class="hidden">
+    <div class="note-box mb-0" style="margin-bottom:16px;">
+      New staff accounts can't self-register. To add one: have the person sign up as a
+      regular hirer/PMET at <code>account.html</code> first, then promote their account here
+      (super admin only) — or run the SQL directly in the Supabase SQL editor.
+    </div>
+    <div id="staffList"></div>
+  </div>
+</main>
+
+<div id="modalRoot"></div>
+
+<script src="../js/supabaseClient.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/accounts.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grants | WorkRedesign.sg Admin</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="admin-bar"></div>
+
+<main class="admin-main">
+  <div class="flex-between">
+    <div>
+      <h1>Grants</h1>
+      <p class="muted mb-0">Manage the grant cards and readiness checklists shown on grants.html.</p>
+    </div>
+    <button class="btn btn-primary" id="newGrantBtn">+ New grant</button>
+  </div>
+
+  <div id="grantsList" class="mt-24"></div>
+</main>
+
+<div id="modalRoot"></div>
+
+<script src="../js/supabaseClient.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/grants.js"></script>
+</body>
+</html>

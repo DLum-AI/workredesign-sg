@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Settings | WorkRedesign.sg Admin</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="admin-bar"></div>
+
+<main class="admin-main">
+  <h1>Settings</h1>
+  <p class="muted">Feature flags let you turn new functionality on or off without a code deploy — the
+  mechanism for scaling the portal safely as you add features.</p>
+
+  <div class="card">
+    <div class="flex-between">
+      <h2 class="mb-0">Feature flags</h2>
+      <button class="btn btn-primary btn-small" id="newFlagBtn">+ New flag</button>
+    </div>
+    <table class="data-table mt-24">
+      <thead><tr><th>Flag</th><th>Label</th><th>Description</th><th>Enabled</th><th></th></tr></thead>
+      <tbody id="flagRows"></tbody>
+    </table>
+  </div>
+
+  <div class="card mt-24">
+    <h2>Audit log</h2>
+    <p class="muted">The last 50 admin actions, for accountability and PDPA-relevant traceability.</p>
+    <table class="data-table">
+      <thead><tr><th>When</th><th>Actor</th><th>Action</th><th>Target</th></tr></thead>
+      <tbody id="auditRows"></tbody>
+    </table>
+  </div>
+</main>
+
+<div id="modalRoot"></div>
+
+<script src="../js/supabaseClient.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/settings.js"></script>
+</body>
+</html>

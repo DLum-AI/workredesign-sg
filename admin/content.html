@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Content &amp; Menu | WorkRedesign.sg Admin</title>
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="css/admin.css" />
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<div id="admin-bar"></div>
+
+<main class="admin-main">
+  <h1>Content &amp; Menu</h1>
+  <p class="muted">Edit site copy and navigation without touching code. Changes go live immediately on the public site.</p>
+
+  <div class="tab-row">
+    <button class="tab-btn active" data-tab="content">Site Content</button>
+    <button class="tab-btn" data-tab="menu">Menu Items</button>
+  </div>
+
+  <div id="tab-content">
+    <div class="card">
+      <div class="flex-between">
+        <h2 class="mb-0">Content blocks</h2>
+        <button class="btn btn-primary btn-small" id="newContentBtn">+ New block</button>
+      </div>
+      <table class="data-table mt-24">
+        <thead><tr><th>Key</th><th>Page</th><th>Label</th><th>Value (preview)</th><th></th></tr></thead>
+        <tbody id="contentRows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="tab-menu" class="hidden">
+    <div class="card">
+      <div class="flex-between">
+        <h2 class="mb-0">Menu items</h2>
+        <button class="btn btn-primary btn-small" id="newMenuBtn">+ New item</button>
+      </div>
+      <table class="data-table mt-24">
+        <thead><tr><th>Order</th><th>Label</th><th>Link</th><th>Visible</th><th></th></tr></thead>
+        <tbody id="menuRows"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<div id="modalRoot"></div>
+
+<script src="../js/supabaseClient.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/content.js"></script>
+</body>
+</html>

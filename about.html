@@ -3,51 +3,62 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About the data | SkillsMap.sg</title>
+<title>About | WorkRedesign.sg</title>
+<meta name="description" content="How WorkRedesign.sg works, and the job-redesign framework behind it." />
 <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+
 <div id="site-header"></div>
 
 <section class="hero">
   <div class="container">
-    <span class="pill-badge">About</span>
-    <h1>Where this data comes from, and its limits</h1>
+    <span class="step-pill">About</span>
+    <h1>Why this tool exists</h1>
+    <p class="lead">Most hirers don't skip job redesign on purpose — they've just never had a reason to
+    look at a role task-by-task. This tool exists to create that moment, then connect what comes out of
+    it to funding and to people.</p>
   </div>
 </section>
 
 <main>
   <div class="container">
 
-    <div class="card">
-      <h2>Source data</h2>
-      <p>SkillsMap.sg is built entirely on three public datasets published by SkillsFuture Singapore (SSG) and Workforce Singapore (WSG) as part of the national <a href="https://www.myskillsfuture.gov.sg/content/portal/en/career-resources/career-resources/browse-industry-sector.html" target="_blank" rel="noopener">Skills Framework</a>:</p>
-      <ul>
-        <li><strong>Skills Framework dataset</strong> &mdash; job role descriptions, critical work functions, key tasks, and the Technical Skills &amp; Competencies (TSC) / Critical Core Skills (CCS) each role requires, with proficiency levels, across 39 sectors and roughly 2,000 job roles.</li>
-        <li><strong>TSC-to-unique-skills mapping</strong> &mdash; how each of the 12,000+ sector-specific TSC/CCS codes maps onto a smaller, de-duplicated taxonomy of skills.</li>
-        <li><strong>Unique Skills List</strong> &mdash; the 2,388-entry taxonomy itself, including which skills are flagged as "emerging" or "CASL" (critical or advanced skills for the future economy).</li>
-      </ul>
-      <p class="mb-0">All three were joined by their shared TSC/CCS codes to build this site's data files. Nothing here is modified from the source content &mdash; job role descriptions, task lists, and skill titles/descriptions are quoted as published.</p>
+    <div class="section">
+      <div class="card">
+        <h2>The problem this solves</h2>
+        <p>Automation and AI adoption are changing what jobs look like across Singapore SMEs — but buying
+        a tool without redesigning the job around it is one of the most common reasons digitalisation
+        spend fails to show up as productivity. The fix isn't more software. It's looking at the job
+        itself first: which tasks should be dropped, which can be automated, and which genuinely need a
+        person's judgement or relationships.</p>
+        <p class="mb-0">Once that's clear, many roles turn out not to need a full-time hire at all —
+        they fit a fractional, job-share, or project-based arrangement instead, often filled well by an
+        experienced mid-career PMET.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>Why a skills-based approach</h2>
-      <p>McKinsey's research with the Rework America Alliance found that employers rank <strong>validating skills and competencies</strong> as their top hiring and talent challenge (48% of respondents), just ahead of sourcing candidates with the right skills (46%) &mdash; and that skills-based hiring is roughly five times more predictive of job performance than hiring on education alone. Their guidance on rolling out a skills-based approach (sourcing &rarr; hiring &rarr; career development) shaped how this tool sequences a redesign: define what the role actually needs before deciding who can do it.</p>
-      <p class="mb-0">Source: <em>"Taking a skills-based approach to building the future workforce,"</em> McKinsey &amp; Company, November 2022.</p>
+    <div class="section">
+      <div class="card">
+        <h2>The five stages</h2>
+        <table class="task-table">
+          <thead><tr><th>Stage</th><th>What happens</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Awareness</strong></td><td>A 2-minute check on whether a specific role shows real redesign signals.</td></tr>
+            <tr><td><strong>2. Education</strong></td><td>A guided worksheet to break the role into its actual tasks.</td></tr>
+            <tr><td><strong>3. Execution</strong></td><td>Each task is classified — eliminate, automate, augment, or elevate — and the leftover work is matched to an arrangement type.</td></tr>
+            <tr><td><strong>4. Grant mapping</strong></td><td>The redesign (and the resulting hire) is matched to the Singapore government schemes that can fund it, with a readiness checklist for each.</td></tr>
+            <tr><td><strong>5. Match</strong></td><td>A request goes to our team, who match it against vetted mid-career PMETs looking for exactly this kind of role.</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>What this tool does <em>not</em> do</h2>
-      <ul class="mb-0">
-        <li>It doesn't automatically decide which skills a task removal affects &mdash; the source data links skills to job roles, not to individual tasks, so step 2's task checklist is a planning record for your report, not an automated skill-remover.</li>
-        <li>It doesn't verify anyone's actual proficiency &mdash; the validation step captures your own self-assessment of your team, which is a starting point for a conversation or a formal skills audit, not a substitute for one.</li>
-        <li>It isn't an official SkillsFuture or Workforce Singapore product, and isn't affiliated with either agency. Always check the <a href="https://www.myskillsfuture.gov.sg/content/portal/en/career-resources/career-resources/browse-industry-sector.html" target="_blank" rel="noopener">official Skills Framework portal</a> for the current, authoritative version of any role's skills before using it for compliance, grant applications, or formal HR decisions.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>Privacy</h2>
-      <p class="mb-0">This is a static site with no backend and no accounts. Everything you enter &mdash; the role you picked, tasks you flagged, and your team's self-assessed proficiency &mdash; stays in your browser's local storage on your own device. Nothing is sent to a server, logged, or shared. Clearing your browser data or using a different device starts fresh.</p>
+    <div class="section">
+      <div class="card">
+        <h2>Who's behind this</h2>
+        <p class="mb-0" id="orgBlurb"></p>
+      </div>
     </div>
 
   </div>
@@ -55,10 +66,13 @@
 
 <div id="site-footer"></div>
 
+<script src="js/data.js"></script>
 <script src="js/layout.js"></script>
 <script>
   renderHeader("about");
   renderFooter();
+  document.getElementById("orgBlurb").textContent =
+    SITE.orgName + " is a social enterprise helping mid-career PMETs access fractional, project-based, and job-share work — and helping Singapore SMEs see where that talent actually fits.";
 </script>
 </body>
 </html>

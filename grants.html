@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grants &amp; Readiness Checklists | WorkRedesign.sg</title>
+<meta name="description" content="Which Singapore workforce grant funds your job redesign, and are you actually ready to apply?" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <span class="step-pill">Stage 4 · Grant Mapping</span>
+    <h1>Fund the redesign. Fund the hire.</h1>
+    <p class="lead">Three schemes cover most of what you'll need — redesigning the role, hiring into it,
+    or hosting someone on a structured attachment. Tick off each checklist before you apply; the most
+    common way SMEs get disqualified is signing something before the paperwork is in.</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="section hidden" id="taskMapBanner">
+      <div class="note-box" id="taskMapBannerText"></div>
+    </div>
+
+    <div class="section" id="grantsContainer">
+      <!-- populated by grants.js -->
+    </div>
+
+    <div class="section text-center">
+      <a href="match.html" class="btn btn-primary" style="font-size:1.05rem; padding:14px 32px;">
+        Ready to fund it? Find talent to fill it &rarr;
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/grants.js"></script>
+<script>
+  renderHeader("grants");
+  renderFooter();
+  initGrants();
+</script>
+</body>
+</html>

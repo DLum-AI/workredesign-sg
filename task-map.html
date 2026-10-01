@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Task Map Tool | WorkRedesign.sg</title>
+<meta name="description" content="Break a role into its tasks, tag each one, and see whether it's a candidate for a fractional, job-share, or project-based arrangement." />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<section class="hero">
+  <div class="container">
+    <span class="step-pill">Stage 2–3 · Education &amp; Execution</span>
+    <h1>Map the role. See what it could become.</h1>
+    <p class="lead">List out the real tasks in this job, tag each one, and this tool will show you what to
+    eliminate, automate, augment, or keep — and whether what's left fits a fractional, job-share, or
+    project-based arrangement.</p>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div class="section">
+      <div class="card">
+        <div class="flex-between">
+          <h2 class="mb-0">Role being mapped</h2>
+        </div>
+        <div class="field mt-24">
+          <label for="roleName">Role / job title</label>
+          <input type="text" id="roleName" placeholder="e.g. Operations Executive" />
+        </div>
+
+        <div class="field mb-0">
+          <label>Or find the official role in the Skills Framework</label>
+          <p class="muted" style="margin-top:-4px;">Link the closest matching role to pull in its official task
+          list and required skills — optional, but saves re-typing and grounds the redesign in real data.</p>
+          <div id="roleSearchWrap" class="sf-search-wrap">
+            <input type="text" id="roleSearchInput" placeholder="Search by job title, e.g. Operations Executive" />
+            <div class="sf-result-list hidden" id="roleSearchResults"></div>
+          </div>
+          <div id="linkedRoleDisplay"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="card">
+        <h2>Tasks</h2>
+        <p class="muted">Add every task that makes up this role. Don't overthink precision on hours —
+        a reasonable estimate is enough.</p>
+
+        <div id="taskRows"></div>
+
+        <div class="flex" style="gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-outline mt-24" id="addTaskBtn" type="button">+ Add a task</button>
+          <button class="btn btn-outline mt-24 hidden" id="prefillTasksBtn" type="button">+ Add official tasks for linked role</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section text-center">
+      <button class="btn btn-primary" id="analyzeBtn" type="button" style="font-size:1.05rem; padding:14px 32px;">
+        Analyze this role &rarr;
+      </button>
+    </div>
+
+    <div class="section hidden" id="resultsSection">
+      <div class="card">
+        <h2>Here's what this role could become</h2>
+        <div id="resultsBody"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/skillsmap-data.js"></script>
+<script src="js/role-search-widget.js"></script>
+<script src="js/taskmap.js"></script>
+<script>
+  renderHeader("task-map");
+  renderFooter();
+  initTaskMap();
+</script>
+</body>
+</html>
